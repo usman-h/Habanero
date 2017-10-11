@@ -1,11 +1,11 @@
-# TestAutomationFramework
+# Habanero
 This is a test automation framework allowing users to create tests using Cucumber-JVM
 
 In order to get started please call the dependency into your project pom.xml by using the following writing the 'dependencies' section:
 
         <dependency>
-            <groupId>com.usmanhussain</groupId>
-            <artifactId>UsmanHussainFramework</artifactId>
+            <groupId>com.usmanhussain.habanero</groupId>
+            <artifactId>Habanero</artifactId>
             <version>[Please see what the latest version is]</version>
         </dependency>
 
