@@ -76,7 +76,6 @@ public abstract class AbstractPage {
     }
 
     public WebElement waitForElementPresent(final By by) {
-        System.out.println("driver wait time==============" + DRIVER_WAIT_TIME);
         Wait<WebDriver> wait = new WebDriverWait(getDriver, DRIVER_WAIT_TIME);
         try {
             return wait.until(ExpectedConditions.presenceOfElementLocated(by));
