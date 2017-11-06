@@ -25,9 +25,10 @@
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>com.usmanhussain.habanero:Habanero</name>
-    <description>com.usmanhussain.habanero - Habanero allows automated tests to be written within a DevOps, Agile or Waterfall (argh!) platform.
+    <description>com.usmanhussain.habanero - Habanero allows automated tests to be written within a DevOps, Agile or
+        Waterfall (unfortunately) platform.
         Designed, Developed, Implemented and Loved by Mr Usman H Hussain
     </description>
     <url>https://github.com/usman-h/Habanero</url>
@@ -62,8 +63,8 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        
-		<repository>
+
+        <repository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/</url>
         </repository>
@@ -157,7 +158,7 @@
             <!--TO ONLY BE USED BY USMAN H HUSSAIN FOR DEPLOYING-->
             <!--################################################-->
             <!--
-			<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.5</version>
@@ -171,7 +172,7 @@
                     </execution>
                 </executions>
             </plugin>
-			-->
+            -->
         </plugins>
     </build>
 
@@ -221,8 +222,8 @@
                     <groupId>com.thoughtworks.xstream</groupId>
                     <artifactId>xstream</artifactId>
                 </exclusion>
-        
-				<exclusion>
+
+                <exclusion>
                     <groupId>com.googlecode.java-diff-utils</groupId>
                     <artifactId>diffutils</artifactId>
                 </exclusion>
@@ -234,15 +235,15 @@
             <artifactId>gherkin</artifactId>
             <version>2.12.2</version>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-html</artifactId>
             <version>0.2.6</version>
@@ -265,7 +266,7 @@
             <artifactId>maven-cucumber-reporting</artifactId>
             <version>3.10.0</version>
         </dependency>
-		
+
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
@@ -400,10 +401,10 @@
         </dependency>
 
         <dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
@@ -430,10 +431,10 @@
         </dependency>
 
         <dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.23</version>
-		</dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
 
         <dependency>
             <groupId>com.saucelabs</groupId>
