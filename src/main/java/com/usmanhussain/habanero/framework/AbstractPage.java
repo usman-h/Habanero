@@ -17,13 +17,16 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractPage {
 
     protected static final Logger LOG = LoggerFactory.getLogger(AbstractPage.class);
-    private static final int DRIVER_WAIT_TIME = 60;
+    private int DRIVER_WAIT_TIME = 10;
     private static final int DEBUG_WAIT = 1000;
     private static final String LOG_CONTEXT = "context";
     public static RemoteWebDriver getDriver;
     public HashMap<String, WebElement> commonElements = new HashMap<>();
 
     public AbstractPage() {
+        if (System.getProperty("driverWaitTime") != null) {
+            DRIVER_WAIT_TIME = Integer.valueOf(System.getProperty("driverWaitTime"));
+        }
         WebDriverDiscovery webDriverDiscovery = new WebDriverDiscovery();
         getDriver = WebDriverDiscovery.getRemoteWebDriver();
     }
