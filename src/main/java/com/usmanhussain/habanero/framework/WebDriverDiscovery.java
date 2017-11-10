@@ -17,6 +17,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,6 +55,8 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
         switch (System.getProperty("driverType")) {
             case "firefox":
                 return new FirefoxDriver();
+            case "safari":
+                return new SafariDriver();
             case "ie":
                 return new InternetExplorerDriver();
             case "chrome":
