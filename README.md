@@ -17,7 +17,11 @@ The framework once installed will allow you to have all your driver classes pre-
 To change the running of your tests to point to another browser you simply have to use:
 -DdriverType=browserName
 
-BrowserName = chrome, firefox, ie and edge.
+BrowserName = chrome, firefox, ie, edge, safari and appium (Android chrome and iOS Safari).
+
+(Appium capability setup example: clean test -DdriverType=appium "-Dcucumber.options=--tags @smoketest" -Dcapabilities=platformName:iOS,deviceName:MandadapusiPhone,browserName:safari,automationName:XCUITest
+ 
+ Assuming mobile execution will start after successful installation of latest Appium and its dependencies if any.)
 
 This will then execute the tests using your locally installed browser.
 
