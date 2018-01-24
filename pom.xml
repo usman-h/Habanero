@@ -157,7 +157,7 @@
             <!--################################################-->
             <!--TO ONLY BE USED BY USMAN H HUSSAIN FOR DEPLOYING-->
             <!--################################################-->
-            <!--&lt;!&ndash;-->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -172,7 +172,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--&ndash;&gt;-->
+            -->
         </plugins>
     </build>
 
