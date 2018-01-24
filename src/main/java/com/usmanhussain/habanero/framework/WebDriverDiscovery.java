@@ -98,9 +98,7 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                 }
             case "docker":
                 try {
-                    return new BrowserWebDriverContainer()
-                            .withDesiredCapabilities(DesiredCapabilities.chrome())
-                            .withRecordingMode(RECORD_ALL, new File("target")).getWebDriver();
+                    return new BrowserWebDriverContainer().withDesiredCapabilities(DesiredCapabilities.chrome()).withRecordingMode(RECORD_ALL, new File("target")).getWebDriver();
                 } catch (Exception e) {
                     log.warn("context", e);
                     return null;
