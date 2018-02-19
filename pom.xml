@@ -25,7 +25,7 @@
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.7</version>
+    <version>1.1.0</version>
     <name>com.usmanhussain.habanero:Habanero</name>
     <description>com.usmanhussain.habanero - Habanero allows automated tests to be written within a DevOps, Agile or
         Waterfall (unfortunately) platform.
@@ -422,12 +422,6 @@
             <groupId>com.relevantcodes</groupId>
             <artifactId>extentreports</artifactId>
             <version>2.41.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vimalselvam</groupId>
-            <artifactId>cucumber-extentsreport</artifactId>
-            <version>1.1.1</version>
         </dependency>
 
         <dependency>
