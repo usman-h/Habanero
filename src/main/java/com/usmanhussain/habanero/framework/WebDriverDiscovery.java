@@ -11,6 +11,7 @@ import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -66,6 +67,13 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                     return new ChromeDriver(capabilities);
                 else
                     return new ChromeDriver();
+            case "chrome-docker":
+                ChromeOptions ChromeOptions = new ChromeOptions();
+                String[] chromeOptions = System.getProperty("chromeOptions").split(",");
+                for (String option : chromeOptions) {
+                    ChromeOptions.addArguments(option);
+                }
+                return new ChromeDriver(ChromeOptions);
             case "appium":
                 try {
                     DesiredCapabilities appiumCapabilities = new DesiredCapabilities();
