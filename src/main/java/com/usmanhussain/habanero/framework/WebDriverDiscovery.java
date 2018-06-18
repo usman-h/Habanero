@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -58,6 +59,8 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
             case "safari":
                 return new SafariDriver();
             case "ie":
+                InternetExplorerOptions options = new InternetExplorerOptions();
+                options.introduceFlakinessByIgnoringSecurityDomains();
                 return new InternetExplorerDriver();
             case "chrome":
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
