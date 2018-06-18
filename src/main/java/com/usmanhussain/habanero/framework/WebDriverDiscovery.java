@@ -61,7 +61,7 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
             case "ie":
                 InternetExplorerOptions options = new InternetExplorerOptions();
                 options.introduceFlakinessByIgnoringSecurityDomains();
-                return new InternetExplorerDriver();
+                return new InternetExplorerDriver(options);
             case "chrome":
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
