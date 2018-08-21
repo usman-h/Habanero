@@ -25,7 +25,7 @@
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.8</version>
+    <version>1.2.3</version>
     <name>com.usmanhussain.habanero:Habanero</name>
     <description>com.usmanhussain.habanero - Habanero allows automated tests to be written within a DevOps, Agile or
         Waterfall (unfortunately) platform.
@@ -149,6 +149,23 @@
             </plugin>
 
             <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.3.0.603</version>
@@ -177,6 +194,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.usmanhussain.sonora</groupId>
+            <artifactId>Sonora</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -247,6 +270,12 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-html</artifactId>
             <version>0.2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>5.0.4</version>
         </dependency>
 
         <dependency>
@@ -425,12 +454,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.vimalselvam</groupId>
-            <artifactId>cucumber-extentsreport</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.23</version>
@@ -460,6 +483,23 @@
             <version>3.9.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.googlecode.fighting-layout-bugs</groupId>
+            <artifactId>fighting-layout-bugs</artifactId>
+            <version>0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.340</version>
+        </dependency>
     </dependencies>
 
 </project>
