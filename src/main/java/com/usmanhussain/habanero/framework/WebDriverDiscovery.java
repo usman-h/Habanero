@@ -95,6 +95,19 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                     e.printStackTrace();
                     return null;
                 }
+            case "docker-grid":
+                try {
+                    DesiredCapabilities dockerGridCapabilities = new DesiredCapabilities();
+                    String driverURL = System.getProperty("driverURL");
+                    String[] Caps = System.getProperty("capabilities").split(",");
+                    for (String cap : Caps) {
+                        dockerGridCapabilities.setCapability(cap.split(":")[0], cap.split(":")[1]);
+                    }
+                    return new RemoteWebDriver(new URL(driverURL), dockerGridCapabilities);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             case "saucelabs":
                 if (getPlatform().contains("iOS") || getPlatform().contains("android")) {
                     return new SauceLabsDriver(getPlatform(), getBrowserName(), getAppiumVersion(), getDeviceName(), getDeviceOrientation(), getPlatformVersion());
