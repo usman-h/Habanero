@@ -25,7 +25,7 @@
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
     <name>com.usmanhussain.habanero:Habanero</name>
     <description>com.usmanhussain.habanero - Habanero allows automated tests to be written within a DevOps, Agile or
         Waterfall (unfortunately) platform.
@@ -197,7 +197,7 @@
         <dependency>
             <groupId>com.usmanhussain.sonora</groupId>
             <artifactId>Sonora</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
 
         <dependency>
