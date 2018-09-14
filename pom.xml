@@ -24,7 +24,7 @@
 
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
-    <version>1.2.6</version>
+    <version>1.3.0</version>
     <packaging>jar</packaging>
     <name>com.usmanhussain.habanero:Habanero</name>
     <url>https://github.com/usman-h/Habanero</url>
@@ -194,6 +194,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.usmanhussain.ghost</groupId>
+            <artifactId>Ghost</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
         <dependency>
             <groupId>com.usmanhussain.sonora</groupId>
             <artifactId>Sonora</artifactId>
