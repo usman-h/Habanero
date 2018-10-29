@@ -3,11 +3,7 @@ package com.usmanhussain.habanero.framework;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
-import net.lightbody.bmp.proxy.CaptureType;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +12,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -38,7 +33,7 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
 
     protected static final Logger log = LoggerFactory.getLogger(WebDriverDiscovery.class);
     public static BrowserMobProxy server;
-    public static RemoteWebDriver remoteWebDriver = setDriver();
+    public static RemoteWebDriver remoteWebDriver = makeDriver();
 
     public WebDriverDiscovery() {
         super(remoteWebDriver);
@@ -48,15 +43,15 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
         return remoteWebDriver;
     }
 
-    private static RemoteWebDriver setDriver() {
-        server = new BrowserMobProxyServer();
-        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
-        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
-        server.start();
-        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
+    public static RemoteWebDriver makeDriver() {
+//        server = new BrowserMobProxyServer();
+//        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
+//        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
+//        server.start();
+//        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
         switch (System.getProperty("driverType")) {
-            case "firefox":
-                return new FirefoxDriver();
+//            case "firefox":
+//                return new FirefoxDriver();
             case "safari":
                 return new SafariDriver();
             case "ie":
@@ -64,11 +59,11 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                 options.introduceFlakinessByIgnoringSecurityDomains();
                 return new InternetExplorerDriver(options);
             case "chrome":
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
-                if (System.getProperty("generateHarReport").equalsIgnoreCase("true"))
-                    return new ChromeDriver(capabilities);
-                else
+//                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+//                if (System.getProperty("generateHarReport").equalsIgnoreCase("true"))
+//                    return new ChromeDriver(capabilities);
+//                else
                     return new ChromeDriver();
             case "chrome-docker":
                 ChromeOptions ChromeOptions = new ChromeOptions();
@@ -213,6 +208,9 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
 
     @Override
     public void close() {
+        if (getDriver() != null) {
+            getDriver().close();
+        }
     }
 
     @Override
