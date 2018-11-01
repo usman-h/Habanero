@@ -197,7 +197,7 @@
         <dependency>
             <groupId>com.usmanhussain.ghost</groupId>
             <artifactId>Ghost</artifactId>
-            <version>1.0.4-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         
         <dependency>
