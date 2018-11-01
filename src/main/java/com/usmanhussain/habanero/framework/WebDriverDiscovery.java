@@ -3,15 +3,19 @@ package com.usmanhussain.habanero.framework;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.proxy.CaptureType;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -29,11 +33,25 @@ import java.util.Set;
 
 import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL;
 
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
 public class WebDriverDiscovery extends EventFiringWebDriver {
 
     protected static final Logger log = LoggerFactory.getLogger(WebDriverDiscovery.class);
-    public static BrowserMobProxy server;
+   // public static BrowserMobProxy server;
+   public static BrowserMobProxy server = new BrowserMobProxyServer();
     public static RemoteWebDriver remoteWebDriver = makeDriver();
+    private static Proxy seleniumProxy ;
+
+    static {
+
+        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
+        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
+        server.start();
+
+        seleniumProxy = ClientUtil.createSeleniumProxy(server);
+    }
+
 
     public WebDriverDiscovery() {
         super(remoteWebDriver);
@@ -44,11 +62,7 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
     }
 
     public static RemoteWebDriver makeDriver() {
-//        server = new BrowserMobProxyServer();
-//        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
-//        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
-//        server.start();
-//        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
+
         switch (System.getProperty("driverType")) {
 //            case "firefox":
 //                return new FirefoxDriver();
