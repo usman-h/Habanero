@@ -76,8 +76,8 @@
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
-        <cucumber.version>2.3.1</cucumber.version>
-        <selenium.webdriver.version>3.5.3</selenium.webdriver.version>
+        <cucumber.version>3.0.2</cucumber.version>
+        <selenium.webdriver.version>3.14.0</selenium.webdriver.version>
         <maven.compiler.version>3.3</maven.compiler.version>
         <slf4j.version>1.7.21</slf4j.version>
         <applitools.version>2.56</applitools.version>
@@ -199,7 +199,7 @@
             <artifactId>Ghost</artifactId>
             <version>1.0.4</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.usmanhussain.sonora</groupId>
             <artifactId>Sonora</artifactId>
@@ -262,7 +262,7 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>gherkin</artifactId>
-            <version>5.0.0</version>
+            <version>5.1.0</version>
         </dependency>
 
         <dependency>

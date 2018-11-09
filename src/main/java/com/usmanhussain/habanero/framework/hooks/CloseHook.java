@@ -28,9 +28,7 @@ public class CloseHook extends StepDefs {
      */
     @Before()
     public void beforeScenario(Scenario scenario) {
-//        getContext().getDriver().server.newHar(scenario.getName());
         WebDriverDiscovery.server.newHar(scenario.getName());
-//        getDriver().manage().window().maximize();
     }
 
 

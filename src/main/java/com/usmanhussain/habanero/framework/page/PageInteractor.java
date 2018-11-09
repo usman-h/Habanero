@@ -39,4 +39,10 @@ public class PageInteractor<T extends PageDefinition> {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), timeoutSecs);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
     }
+
+    public WebElement waitUntilElementClickable(WebElement element) {
+        Wait<WebDriver> wait = new WebDriverWait(getDriver(), DEFAULT_CURSOR_TIME_OUT_SECS);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
+    }
 }

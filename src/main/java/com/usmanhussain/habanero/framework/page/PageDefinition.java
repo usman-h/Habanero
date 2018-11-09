@@ -17,17 +17,36 @@ public abstract class PageDefinition {
         this.context = context;
     }
 
+    public TestContext getContext() {
+        return context;
+    }
+
     protected WebDriver getDriver() {
         return context.getDriver();
     }
 
     protected WebElement getElementById(String id) {
-        return (new WebDriverWait(getDriver(), ELEMENT_FETCH_TIME_OUT_SECS))
-                .until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
+        return getElementBy(By.id(id));
     }
 
     protected WebElement getElementByPath(String path) {
+        return getElementBy(By.xpath(path));
+    }
+
+    protected WebElement getElementByClass(String className) {
+        return getElementBy(By.className(className));
+    }
+
+    protected WebElement getElementByCSS(String css) {
+        return getElementBy(By.cssSelector(css));
+    }
+
+    protected WebElement getByName(String name) {
+        return getElementBy(By.name(name));
+    }
+
+    public WebElement getElementBy(By by) {
         return (new WebDriverWait(getDriver(), ELEMENT_FETCH_TIME_OUT_SECS))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(path)));
+                .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 }
