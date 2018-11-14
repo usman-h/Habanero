@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,5 +45,11 @@ public class PageInteractor<T extends PageDefinition> {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), DEFAULT_CURSOR_TIME_OUT_SECS);
         wait.until(ExpectedConditions.elementToBeClickable(element));
         return element;
+    }
+
+    public void selectDropDown(WebElement dropDown, String text) {
+        waitUntilElementClickable(dropDown);
+        Select select = new Select(dropDown);
+        select.selectByVisibleText(text);
     }
 }
