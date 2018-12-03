@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -32,8 +33,6 @@ import java.util.List;
 import java.util.Set;
 
 import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL;
-
-//import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverDiscovery extends EventFiringWebDriver {
 
@@ -64,8 +63,8 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
     public static RemoteWebDriver makeDriver() {
 
         switch (System.getProperty("driverType")) {
-//            case "firefox":
-//                return new FirefoxDriver();
+            case "firefox":
+                return new FirefoxDriver();
             case "safari":
                 return new SafariDriver();
             case "ie":
@@ -73,13 +72,13 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                 options.introduceFlakinessByIgnoringSecurityDomains();
                 return new InternetExplorerDriver(options);
             case "chrome":
-//                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-//                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
-//                if (System.getProperty("generateHarReport").equalsIgnoreCase("true"))
-//                    return new ChromeDriver(capabilities);
-//                else
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+                if (System.getProperty("generateHarReport").equalsIgnoreCase("true"))
+                    return new ChromeDriver(capabilities);
+                else
                     return new ChromeDriver();
-            case "chrome-docker":
+            case "chromeDocker":
                 ChromeOptions ChromeOptions = new ChromeOptions();
                 String[] chromeOptions = System.getProperty("chromeOptions").split(",");
                 for (String option : chromeOptions) {

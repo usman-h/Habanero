@@ -1,5 +1,6 @@
 package com.usmanhussain.habanero.framework.page;
 
+import com.usmanhussain.habanero.context.TestContext;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageInteractor<T extends PageDefinition> {
 
-    private static final int DEFAULT_CURSOR_TIME_OUT_SECS = 120;
+    private static final int DEFAULT_CURSOR_TIME_OUT_SECS = 10;
 
     private final T pageDefinition;
 
@@ -51,5 +52,21 @@ public class PageInteractor<T extends PageDefinition> {
         waitUntilElementClickable(dropDown);
         Select select = new Select(dropDown);
         select.selectByVisibleText(text);
+    }
+
+    public void selectDropDown(WebElement dropDown, int index) {
+        waitUntilElementClickable(dropDown);
+        Select select = new Select(dropDown);
+        select.selectByIndex(index);
+    }
+
+    public void selectDropDownByValue(WebElement dropDown, String text) {
+        waitUntilElementClickable(dropDown);
+        Select select = new Select(dropDown);
+        select.selectByValue(text);
+    }
+
+    public TestContext getContext() {
+        return getPageDefinition().getContext();
     }
 }

@@ -19,9 +19,24 @@ To change the running of your tests to point to another browser you simply have 
 
 BrowserName = chrome, firefox, ie, edge, safari and appium (Android chrome and iOS Safari).
 
-(Appium capability setup example: clean test -DdriverType=appium "-Dcucumber.options=--tags @smoketest" -Dcapabilities=platformName:iOS,deviceName:MandadapusiPhone,browserName:safari,automationName:XCUITest
+(Appium capability setup example: clean test -DdriverType=appium -Dtags=@smoketest -Dcapabilities=platformName:iOS,deviceName:iPhone,browserName:safari,automationName:XCUITest
  
  Assuming mobile execution will start after successful installation of latest Appium and its dependencies if any.)
 
 This will then execute the tests using your locally installed browser.
+
+Habanero also uses other projects to expand the coverage of types of tests that can be automated.
+These projects are:
+
+**GHOST** - https://github.com/usman-h/Ghost
+
+**SONORA** - https://github.com/usman-h/Sonora
+
+Please do take a look at these and help contribute to make the whole testing ecosystem a better place!
+
+If you require a new project to set up, try using **Cayenne** (https://github.com/usman-h/Cayenne) which is an ArcheType project that utilises Habanero.
+
+Happy Testing...
+
+Usman H Hussain
 

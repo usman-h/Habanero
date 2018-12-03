@@ -6,12 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class PageDefinition {
 
     private final TestContext context;
 
     private static final int ELEMENT_FETCH_TIME_OUT_SECS = 10;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageDefinition.class);
 
     public PageDefinition(TestContext context) {
         this.context = context;
