@@ -18,6 +18,7 @@ To change the running of your tests to point to another browser you simply have 
 -DdriverType=browserName
 
 BrowserName = chrome, firefox, ie, edge, safari and appium (Android chrome and iOS Safari).
+NOTE: These will change according to whats in the market e.g. Zelenium and Docker-Selenium will be added when ready.
 
 (Appium capability setup example: clean test -DdriverType=appium -Dtags=@smoketest -Dcapabilities=platformName:iOS,deviceName:iPhone,browserName:safari,automationName:XCUITest
  
