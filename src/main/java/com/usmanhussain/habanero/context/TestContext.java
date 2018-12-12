@@ -4,6 +4,10 @@ import com.usmanhussain.habanero.framework.WebDriverDiscovery;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+/**
+ * This context is unique to a scenario, any step def injecting this will have
+ * access to the one driver used by the context
+ */
 public class TestContext {
 
     private RemoteWebDriver driver;
