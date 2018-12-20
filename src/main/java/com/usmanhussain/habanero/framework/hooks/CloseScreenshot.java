@@ -1,5 +1,6 @@
 package com.usmanhussain.habanero.framework.hooks;
 
+import com.usmanhussain.habanero.context.HarContext;
 import com.usmanhussain.habanero.context.TestContext;
 import com.usmanhussain.habanero.framework.WebDriverDiscovery;
 import cucumber.api.Scenario;
@@ -29,7 +30,7 @@ public class CloseScreenshot implements CloseOps {
                 PrintWriter out = new PrintWriter("target/cucumber_reports/" + scenario.getName().replace("/", "").replace(" ", "") + ".html");
                 out.println(pageSource);
                 scenario.embed(pageSource.getBytes(), "text/plain");
-                Har har = WebDriverDiscovery.server.getHar();
+                Har har = context.getHar();
                 File harFile = new File("target/cucumber_reports/" + scenario.getName().replace("/", "").replace(" ", "") + ".har");
                 har.writeTo(harFile);
             } catch (Exception e) {

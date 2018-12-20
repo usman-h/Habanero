@@ -1,6 +1,7 @@
 package com.usmanhussain.habanero.framework.hooks;
 
 
+import com.usmanhussain.habanero.context.HarContext;
 import com.usmanhussain.habanero.context.TestContext;
 import com.usmanhussain.habanero.framework.StepDefs;
 import com.usmanhussain.habanero.framework.WebDriverDiscovery;
@@ -28,7 +29,7 @@ public class CloseHook extends StepDefs {
      */
     @Before()
     public void beforeScenario(Scenario scenario) {
-        WebDriverDiscovery.server.newHar(scenario.getName());
+        getContext().setHar(HarContext.getInstance().getServer().newHar(scenario.getName()));
     }
 
 

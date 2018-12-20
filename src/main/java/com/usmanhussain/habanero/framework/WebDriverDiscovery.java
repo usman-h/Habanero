@@ -1,5 +1,6 @@
 package com.usmanhussain.habanero.framework;
 
+import com.usmanhussain.habanero.context.HarContext;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -34,31 +35,31 @@ import java.util.Set;
 
 import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL;
 
-public class WebDriverDiscovery extends EventFiringWebDriver {
+public class WebDriverDiscovery /*extends EventFiringWebDriver*/ {
 
     protected static final Logger log = LoggerFactory.getLogger(WebDriverDiscovery.class);
    // public static BrowserMobProxy server;
-   public static BrowserMobProxy server = new BrowserMobProxyServer();
-    public static RemoteWebDriver remoteWebDriver = makeDriver();
-    private static Proxy seleniumProxy ;
+  // public static BrowserMobProxy server = new BrowserMobProxyServer();
+  //  public static RemoteWebDriver remoteWebDriver = makeDriver();
+   // private static Proxy seleniumProxy ;
 
     static {
 
-        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
-        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
-        server.start();
-
-        seleniumProxy = ClientUtil.createSeleniumProxy(server);
+//        server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
+//        server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
+//        server.start();
+//
+//        seleniumProxy = ClientUtil.createSeleniumProxy(server);
     }
 
 
-    public WebDriverDiscovery() {
-        super(remoteWebDriver);
-    }
-
-    public static RemoteWebDriver getRemoteWebDriver() {
-        return remoteWebDriver;
-    }
+//    public WebDriverDiscovery() {
+//        super(remoteWebDriver);
+//    }
+//
+//    public static RemoteWebDriver getRemoteWebDriver() {
+//        return remoteWebDriver;
+//    }
 
     public static RemoteWebDriver makeDriver() {
 
@@ -73,7 +74,7 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
                 return new InternetExplorerDriver(options);
             case "chrome":
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+                capabilities.setCapability(CapabilityType.PROXY, HarContext.getInstance().getSeleniumProxy());
                 if (System.getProperty("generateHarReport").equalsIgnoreCase("true"))
                     return new ChromeDriver(capabilities);
                 else
@@ -186,72 +187,72 @@ public class WebDriverDiscovery extends EventFiringWebDriver {
         return System.getProperty("platformVersion");
     }
 
-    public WebDriver getDriver() {
-        return remoteWebDriver;
-    }
+//    public WebDriver getDriver() {
+//        return remoteWebDriver;
+//    }
 
-    @Override
-    public void get(String s) {
-    }
+//    @Override
+//    public void get(String s) {
+//    }
+//
+//    @Override
+//    public String getCurrentUrl() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getTitle() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<WebElement> findElements(By by) {
+//        return null;
+//    }
+//
+//    @Override
+//    public WebElement findElement(By by) {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getPageSource() {
+//        return null;
+//    }
 
-    @Override
-    public String getCurrentUrl() {
-        return null;
-    }
-
-    @Override
-    public String getTitle() {
-        return null;
-    }
-
-    @Override
-    public List<WebElement> findElements(By by) {
-        return null;
-    }
-
-    @Override
-    public WebElement findElement(By by) {
-        return null;
-    }
-
-    @Override
-    public String getPageSource() {
-        return null;
-    }
-
-    @Override
-    public void close() {
-        if (getDriver() != null) {
-            getDriver().close();
-        }
-    }
-
-    @Override
-    public void quit() {
-    }
-
-    @Override
-    public Set<String> getWindowHandles() {
-        return null;
-    }
-
-    @Override
-    public String getWindowHandle() {
-        return null;
-    }
-
-    @Override
-    public TargetLocator switchTo() {
-        return null;
-    }
-
-    @Override
-    public Navigation navigate() {
-        return null;
-    }
-
-    @Override
-    public Options manage() {
-        return null;
-    }
+//    @Override
+//    public void close() {
+//        if (getDriver() != null) {
+//            getDriver().close();
+//        }
+//    }
+//
+//    @Override
+//    public void quit() {
+//    }
+//
+//    @Override
+//    public Set<String> getWindowHandles() {
+//        return null;
+//    }
+//
+//    @Override
+//    public String getWindowHandle() {
+//        return null;
+//    }
+//
+//    @Override
+//    public TargetLocator switchTo() {
+//        return null;
+//    }
+//
+//    @Override
+//    public Navigation navigate() {
+//        return null;
+//    }
+//
+//    @Override
+//    public Options manage() {
+//        return null;
+//    }
 }
