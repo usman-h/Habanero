@@ -6,4 +6,5 @@ import cucumber.api.Scenario;
 public interface CloseOps {
 
     void close(Scenario scenario, TestContext context);
+
 }

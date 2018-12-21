@@ -69,4 +69,5 @@ public class PageInteractor<T extends PageDefinition> {
     public TestContext getContext() {
         return getPageDefinition().getContext();
     }
+
 }

@@ -14,11 +14,9 @@ public class HarContext {
     private final Proxy seleniumProxy;
 
     private HarContext() {
-
         server.enableHarCaptureTypes(CaptureType.getRequestCaptureTypes());
         server.enableHarCaptureTypes(CaptureType.getResponseCaptureTypes());
         server.start();
-
         seleniumProxy = ClientUtil.createSeleniumProxy(server);
     }
 

@@ -1,8 +1,6 @@
 package com.usmanhussain.habanero.framework.hooks;
 
-import com.usmanhussain.habanero.context.HarContext;
 import com.usmanhussain.habanero.context.TestContext;
-import com.usmanhussain.habanero.framework.WebDriverDiscovery;
 import cucumber.api.Scenario;
 import net.lightbody.bmp.core.har.Har;
 import org.openqa.selenium.OutputType;
@@ -38,4 +36,5 @@ public class CloseScreenshot implements CloseOps {
             }
         }
     }
+
 }

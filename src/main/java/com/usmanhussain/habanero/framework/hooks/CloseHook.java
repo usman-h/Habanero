@@ -1,10 +1,8 @@
 package com.usmanhussain.habanero.framework.hooks;
 
-
 import com.usmanhussain.habanero.context.HarContext;
 import com.usmanhussain.habanero.context.TestContext;
 import com.usmanhussain.habanero.framework.StepDefs;
-import com.usmanhussain.habanero.framework.WebDriverDiscovery;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -13,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CloseHook extends StepDefs {
-
 
     private List<CloseOps> closeOps = new LinkedList<>();
 
@@ -32,7 +29,6 @@ public class CloseHook extends StepDefs {
         getContext().setHar(HarContext.getInstance().getServer().newHar(scenario.getName()));
     }
 
-
     @After
     public void close(Scenario scenario) {
         for (CloseOps c : closeOps) {
@@ -40,4 +36,5 @@ public class CloseHook extends StepDefs {
         }
         getContext().close();
     }
+
 }

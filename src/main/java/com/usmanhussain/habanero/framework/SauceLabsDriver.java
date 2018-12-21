@@ -44,7 +44,6 @@ public class SauceLabsDriver extends RemoteWebDriver {
                     + WebDriverDiscovery.getBrowserName() + " "
                     + WebDriverDiscovery.getBrowserVersion() + " "
                     + WebDriverDiscovery.getPlatform();
-
             capabilities.setCapability("browserName", browserName);
             capabilities.setCapability("version", browserVersion);
             capabilities.setCapability("platform", platform);
@@ -53,7 +52,6 @@ public class SauceLabsDriver extends RemoteWebDriver {
             capabilities.setCapability("record-video", true);
             capabilities.setCapability("record-screenshots", true);
             capabilities.setCapability("build", buildName);
-
             LOG.info("capabilities : " + capabilities.asMap().toString());
             return capabilities;
         } catch (Exception e) {
@@ -79,7 +77,6 @@ public class SauceLabsDriver extends RemoteWebDriver {
             capabilities.setCapability("record-video", true);
             capabilities.setCapability("record-screenshots", true);
             capabilities.setCapability("build", buildName);
-
             LOG.info("capabilities : " + capabilities.asMap().toString());
             return capabilities;
         } catch (Exception e) {
