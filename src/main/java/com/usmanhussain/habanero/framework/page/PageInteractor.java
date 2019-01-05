@@ -1,6 +1,8 @@
 package com.usmanhussain.habanero.framework.page;
 
 import com.usmanhussain.habanero.context.TestContext;
+import com.usmanhussain.habanero.framework.assertion.AssertAction;
+import com.usmanhussain.habanero.framework.assertion.AssertOKException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -10,11 +12,16 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class PageInteractor<T extends PageDefinition> {
 
     private static final int DEFAULT_CURSOR_TIME_OUT_SECS = 10;
 
     private final T pageDefinition;
+
+    private List<AssertAction> assertActions = new LinkedList<>();
 
     public PageInteractor(T pageDefinition) {
         this.pageDefinition = pageDefinition;
@@ -68,6 +75,16 @@ public class PageInteractor<T extends PageDefinition> {
 
     public TestContext getContext() {
         return getPageDefinition().getContext();
+    }
+
+    public void addAssert(AssertAction assertAction) {
+        assertActions.add(assertAction);
+    }
+
+    protected void pageLoad() throws AssertOKException {
+        for (AssertAction a : assertActions) {
+            a.onPageLoad(getPageDefinition());
+        }
     }
 
 }
