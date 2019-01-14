@@ -11,11 +11,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PageInteractor<T extends PageDefinition> {
+public abstract class PageInteractor<T extends PageDefinition> {
 
     private static final int DEFAULT_CURSOR_TIME_OUT_SECS = 10;
 
@@ -23,8 +25,13 @@ public class PageInteractor<T extends PageDefinition> {
 
     private List<AssertAction> assertActions = new LinkedList<>();
 
-    public PageInteractor(T pageDefinition) {
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private final String identifier;
+
+    public PageInteractor(T pageDefinition, String identifier) {
         this.pageDefinition = pageDefinition;
+        this.identifier = identifier;
     }
 
     public T getPageDefinition() {
@@ -87,4 +94,7 @@ public class PageInteractor<T extends PageDefinition> {
         }
     }
 
+    public String getIdentifier() {
+        return identifier;
+    }
 }
