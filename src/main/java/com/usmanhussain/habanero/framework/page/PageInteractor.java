@@ -3,6 +3,7 @@ package com.usmanhussain.habanero.framework.page;
 import com.usmanhussain.habanero.context.TestContext;
 import com.usmanhussain.habanero.framework.assertion.AssertAction;
 import com.usmanhussain.habanero.framework.assertion.AssertConstants;
+import com.usmanhussain.habanero.framework.assertion.AssertException;
 import com.usmanhussain.habanero.framework.assertion.AssertOKException;
 import com.usmanhussain.habanero.framework.element.WebItem;
 import org.openqa.selenium.*;
@@ -42,21 +43,21 @@ public abstract class PageInteractor<T extends PageDefinition> {
         return pageDefinition;
     }
 
-    protected void sendText(WebItem item, CharSequence... txt) throws AssertOKException {
+    protected void sendText(WebItem item, CharSequence... txt) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         waitUntilElementClickable(item);
         item.getElement().sendKeys(txt);
         fireAfterItem(item);
     }
 
-    protected void press(WebItem item) throws AssertOKException {
+    protected void press(WebItem item) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].click();", item.getElement());
         fireAfterItem(item);
     }
 
-    protected void clickItem(WebItem item) throws AssertOKException {
+    protected void clickItem(WebItem item) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         item.getElement().click();
         fireAfterItem(item);
@@ -80,7 +81,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
         wait.until(ExpectedConditions.elementToBeClickable(item.getElement()));
     }
 
-    protected void selectDropDown(WebItem item, String text) throws AssertOKException {
+    protected void selectDropDown(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         waitUntilElementClickable(item);
         Select select = new Select(item.getElement());
@@ -88,7 +89,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
         fireAfterItem(item);
     }
 
-    protected void selectDropDown(WebItem item, int index) throws AssertOKException {
+    protected void selectDropDown(WebItem item, int index) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         waitUntilElementClickable(item);
         Select select = new Select(item.getElement());
@@ -96,7 +97,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
         fireAfterItem(item);
     }
 
-    protected void selectDropDownByValue(WebItem item, String text) throws AssertOKException {
+    protected void selectDropDownByValue(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
         waitUntilElementClickable(item);
         Select select = new Select(item.getElement());
@@ -117,21 +118,21 @@ public abstract class PageInteractor<T extends PageDefinition> {
         assertActions.add(assertAction);
     }
 
-    protected void fireBeforeItem(WebItem item) throws AssertOKException {
+    protected void fireBeforeItem(WebItem item) throws AssertOKException, AssertException {
         fireOnAction(AssertConstants.PRE_ITEM_ACTION, Optional.of(item));
     }
 
-    protected void fireAfterItem(WebItem item) throws AssertOKException {
+    protected void fireAfterItem(WebItem item) throws AssertOKException, AssertException {
         fireOnAction(AssertConstants.POST_ITEM_ACTION, Optional.of(item));
         visitedItems.add(item);
     }
 
-    protected void fireOnPageLoad() throws AssertOKException {
+    protected void fireOnPageLoad() throws AssertOKException, AssertException {
         visitedItems.clear();
         fireOnAction(AssertConstants.PAGE_LOAD_ACTION, Optional.empty());
     }
 
-    protected void fireOnAction(String action, Optional<WebItem> item) throws AssertOKException {
+    protected void fireOnAction(String action, Optional<WebItem> item) throws AssertOKException, AssertException {
 
         for (AssertAction a : assertActions) {
             a.onAction(action, this, item);
