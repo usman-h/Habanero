@@ -20,13 +20,11 @@ public abstract class BaseAssert implements AssertAction {
     @Override
     public void onAction(String action, PageInteractor<?> pageInteractor, Optional<WebItem> item) throws AssertOKException {
 
-        assertAction(action, pageInteractor, item);
-
-        if (assertType == AssertType.END_WHEN_OK) {
+        if (assertAction(action, pageInteractor, item) && assertType == AssertType.END_WHEN_OK) {
             throw new AssertOKException();
         }
     }
 
-    protected abstract void assertAction(String action, PageInteractor<?> pageInteractor, Optional<WebItem> item);
+    protected abstract boolean assertAction(String action, PageInteractor<?> pageInteractor, Optional<WebItem> item);
 
 }
