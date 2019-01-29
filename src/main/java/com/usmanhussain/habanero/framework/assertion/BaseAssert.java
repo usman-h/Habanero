@@ -2,12 +2,15 @@ package com.usmanhussain.habanero.framework.assertion;
 
 import com.usmanhussain.habanero.framework.element.WebItem;
 import com.usmanhussain.habanero.framework.page.PageInteractor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
 public abstract class BaseAssert implements AssertAction {
 
     private final AssertType assertType;
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     public BaseAssert() {
         assertType = AssertType.END_WHEN_OK;
