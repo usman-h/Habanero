@@ -1,10 +1,12 @@
 package com.usmanhussain.habanero.framework.reflection;
 
+import com.usmanhussain.habanero.framework.element.Decode;
 import com.usmanhussain.habanero.framework.element.WebField;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ReflectionMapperUtils {
@@ -24,7 +26,30 @@ public class ReflectionMapperUtils {
         primitives.add(String.class);
     }
 
-    public static boolean setField(String fieldName, Object value, Object object) throws IllegalAccessException, ClassNotFoundException {
+    private static void setField(Field field, Object value, Object object) throws IllegalAccessException, InvocationTargetException {
+
+        Object valueToSet = value;
+
+        if (field.getType().equals(Integer.class) || field.getType().equals(int.class)) {
+            valueToSet = Integer.parseInt((String) value);
+        } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
+            valueToSet = Boolean.valueOf((String) value);
+        } else if (field.getType().isEnum()) {
+
+            for (Method m : field.getType().getDeclaredMethods()) {
+                if (m.getAnnotation(Decode.class) != null) {
+                    valueToSet = m.invoke(field.getType(), valueToSet);
+                    break;
+                }
+            }
+
+        }
+
+        field.set(object, valueToSet);
+
+    }
+
+    public static boolean setField(String fieldName, Object value, Object object) throws IllegalAccessException, ClassNotFoundException, InvocationTargetException {
 
         if (object == null) {
             return false;
@@ -36,8 +61,9 @@ public class ReflectionMapperUtils {
 
             if (fields.length > 0 && fields[0].value().equals(fieldName)) {
                 f.setAccessible(true);
-                //TODO - marshall all types, i.e. string, int, enum, list
-                f.set(object, value);
+                //TODO - marshall all types, i.e. string, int, enum, list of things..
+                //f.set(object, value);
+                setField(f, value, object);
                 return true;
             } else {
                 //TODO optimise this by using company name, don't drill in enums, lists etc
@@ -53,20 +79,5 @@ public class ReflectionMapperUtils {
         }
 
         return false;
-    }
-
-    public static void setField2(String fieldName, Object value, Object object) throws ClassNotFoundException, IllegalAccessException {
-
-        for (Field f : object.getClass().getDeclaredFields()) {
-            boolean primitive = f.getType().isPrimitive() || primitives.contains(Class.forName(f.getType().getName()));
-            System.out.println(f.getName() + " " + primitive);
-
-            if (!primitive) {
-
-                f.setAccessible(true);
-                Object go = f.get(object);
-                setField2(fieldName, value, go);
-            }
-        }
     }
 }
