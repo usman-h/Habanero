@@ -30,19 +30,24 @@ public class ReflectionMapperUtils {
 
         Object valueToSet = value;
 
-        if (field.getType().equals(Integer.class) || field.getType().equals(int.class)) {
-            valueToSet = Integer.parseInt((String) value);
-        } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
-            valueToSet = Boolean.valueOf((String) value);
-        } else if (field.getType().isEnum()) {
+        if (value instanceof String && value.equals("null")) {
+            valueToSet = null;
+        } else {
 
-            for (Method m : field.getType().getDeclaredMethods()) {
-                if (m.getAnnotation(Decode.class) != null) {
-                    valueToSet = m.invoke(field.getType(), valueToSet);
-                    break;
+            if (field.getType().equals(Integer.class) || field.getType().equals(int.class)) {
+                valueToSet = Integer.parseInt((String) value);
+            } else if (field.getType().equals(Boolean.class) || field.getType().equals(boolean.class)) {
+                valueToSet = Boolean.valueOf((String) value);
+            } else if (field.getType().isEnum()) {
+
+                for (Method m : field.getType().getDeclaredMethods()) {
+                    if (m.getAnnotation(Decode.class) != null) {
+                        valueToSet = m.invoke(field.getType(), valueToSet);
+                        break;
+                    }
                 }
-            }
 
+            }
         }
 
         field.set(object, valueToSet);
