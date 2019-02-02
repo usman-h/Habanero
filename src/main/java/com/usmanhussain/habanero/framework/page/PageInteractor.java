@@ -45,21 +45,33 @@ public abstract class PageInteractor<T extends PageDefinition> {
 
     protected void sendText(WebItem item, CharSequence... txt) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        waitUntilElementClickable(item);
-        item.getElement().sendKeys(txt);
+
+        if (item.getElement() != null) {
+            waitUntilElementClickable(item);
+            item.getElement().sendKeys(txt);
+        }
+
         fireAfterItem(item);
     }
 
     protected void press(WebItem item) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("arguments[0].click();", item.getElement());
+
+        if (item.getElement() != null) {
+            JavascriptExecutor js = (JavascriptExecutor) getDriver();
+            js.executeScript("arguments[0].click();", item.getElement());
+        }
+
         fireAfterItem(item);
     }
 
     protected void clickItem(WebItem item) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        item.getElement().click();
+
+        if (item.getElement() != null) {
+            item.getElement().click();
+        }
+
         fireAfterItem(item);
     }
 
@@ -83,25 +95,37 @@ public abstract class PageInteractor<T extends PageDefinition> {
 
     protected void selectDropDown(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        waitUntilElementClickable(item);
-        Select select = new Select(item.getElement());
-        select.selectByVisibleText(text);
+
+        if (item.getElement() != null) {
+            waitUntilElementClickable(item);
+            Select select = new Select(item.getElement());
+            select.selectByVisibleText(text);
+        }
+
         fireAfterItem(item);
     }
 
     protected void selectDropDown(WebItem item, int index) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        waitUntilElementClickable(item);
-        Select select = new Select(item.getElement());
-        select.selectByIndex(index);
+
+        if (item.getElement() != null) {
+            waitUntilElementClickable(item);
+            Select select = new Select(item.getElement());
+            select.selectByIndex(index);
+        }
+
         fireAfterItem(item);
     }
 
     protected void selectDropDownByValue(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
-        waitUntilElementClickable(item);
-        Select select = new Select(item.getElement());
-        select.selectByValue(text);
+
+        if (item.getElement() != null) {
+            waitUntilElementClickable(item);
+            Select select = new Select(item.getElement());
+            select.selectByValue(text);
+        }
+
         fireAfterItem(item);
     }
 

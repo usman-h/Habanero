@@ -44,6 +44,8 @@ public class TestIt {
         private String test;
         @WebField("colour")
         private Colour colour;
+        @WebField("empty1")
+        private Boolean empty = true;
     }
 
 
@@ -52,7 +54,7 @@ public class TestIt {
         TestMe t = new TestMe();
         //ReflectionMapperUtils.setField2("test", 1, t);
 
-        ReflectionMapperUtils.setField("colour", "Red", t);
+        ReflectionMapperUtils.setField("empty1", "null", t);
 
     }
 }

@@ -23,8 +23,12 @@ public class WebItemElement implements WebItem {
 
     @Override
     public WebElement getElement() {
-        return (new WebDriverWait(context.getDriver(), ELEMENT_FETCH_TIME_OUT_SECS))
-                .until(ExpectedConditions.presenceOfElementLocated(element));
+        if (element != null) {
+            return (new WebDriverWait(context.getDriver(), ELEMENT_FETCH_TIME_OUT_SECS))
+                    .until(ExpectedConditions.presenceOfElementLocated(element));
+        }
+
+        return null;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.usmanhussain.habanero.framework.element.WebField;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,7 +57,7 @@ public class ReflectionMapperUtils {
 
     public static boolean setField(String fieldName, Object value, Object object) throws IllegalAccessException, ClassNotFoundException, InvocationTargetException {
 
-        if (object == null) {
+        if (object == null || object instanceof Collection) {
             return false;
         }
 
