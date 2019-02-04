@@ -96,7 +96,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void selectDropDown(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null) {
+        if (item.getElement() != null && text != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByVisibleText(text);
@@ -105,10 +105,10 @@ public abstract class PageInteractor<T extends PageDefinition> {
         fireAfterItem(item);
     }
 
-    protected void selectDropDown(WebItem item, int index) throws AssertOKException, AssertException {
+    protected void selectDropDown(WebItem item, Integer index) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null) {
+        if (item.getElement() != null && index != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByIndex(index);
@@ -120,7 +120,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void selectDropDownByValue(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null) {
+        if (item.getElement() != null && text != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByValue(text);
