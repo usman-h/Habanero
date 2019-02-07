@@ -46,7 +46,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void sendText(WebItem item, CharSequence... txt) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null) {
+        if (item.getElement() != null && txt[0] != null) {
             waitUntilElementClickable(item);
             item.getElement().sendKeys(txt);
         }
