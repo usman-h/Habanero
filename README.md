@@ -1,5 +1,9 @@
 # Habanero
-This is a test automation framework allowing users to create tests using Cucumber-JVM
+Habanero is a test automation framework that was nominated as a finalist at the prestigious **European Software Testing Awards** for the years 2018 and 2017. Habanero allows users to create tests using Cucumber-JVM. 
+Habanero also allows enables all members of a development team to get involved and therefore can aid collaboration between the business and technical team members.
+
+Users include many software companies around the world (based in the USA, India and Europe) as well as Direct Line Group in the UK (which is the biggest insurance company in the UK). 
+Habanero has also been adopted and collaborated with, by some of the leading tech consultancies in the world. 
 
 In order to get started please call the dependency into your project pom.xml by using the following writing the 'dependencies' section:
 
