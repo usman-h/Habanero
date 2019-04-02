@@ -48,7 +48,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void sendText(WebItem item, CharSequence... txt) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null && txt[0] != null) {
+        if (txt[0] != null && item.getElement() != null) {
             waitUntilElementClickable(item);
             item.getElement().sendKeys(txt);
         }
@@ -98,7 +98,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void selectDropDown(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null && text != null) {
+        if (text != null && item.getElement() != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByVisibleText(text);
@@ -110,7 +110,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void selectDropDown(WebItem item, Integer index) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null && index != null) {
+        if (index != null && item.getElement() != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByIndex(index);
@@ -122,7 +122,7 @@ public abstract class PageInteractor<T extends PageDefinition> {
     protected void selectDropDownByValue(WebItem item, String text) throws AssertOKException, AssertException {
         fireBeforeItem(item);
 
-        if (item.getElement() != null && text != null) {
+        if (text != null && item.getElement() != null) {
             waitUntilElementClickable(item);
             Select select = new Select(item.getElement());
             select.selectByValue(text);
