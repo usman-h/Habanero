@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -96,4 +97,7 @@ public class TestContext {
         return null;
     }
 
+    public Set<?> getDataItems() {
+        return new LinkedHashSet<>(data);
+    }
 }
