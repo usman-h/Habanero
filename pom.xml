@@ -21,7 +21,7 @@
 
     <groupId>com.usmanhussain.habanero</groupId>
     <artifactId>Habanero</artifactId>
-    <version>1.4.8-SNAPSHOT</version>
+    <version>1.4.8</version>
     <packaging>jar</packaging>
     <name>com.usmanhussain.habanero:Habanero</name>
     <url>https://github.com/usman-h/Habanero</url>
