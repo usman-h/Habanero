@@ -23,10 +23,18 @@ public abstract class PageDefinition {
     }
 
     protected WebItem make(By by, String name) {
-        return new WebItemElement(by, name, getContext());
+        return new WebItemElement(by, name, getContext(), false);
+    }
+
+    protected WebItem makeVisible(By by, String name) {
+        return new WebItemElement(by, name, getContext(), true);
     }
 
     protected WebItem make(By by) {
-        return new WebItemElement(by, null, getContext());
+        return new WebItemElement(by, null, getContext(), false);
+    }
+
+    protected WebItem makeVisible(By by) {
+        return new WebItemElement(by, null, getContext(), true);
     }
 }

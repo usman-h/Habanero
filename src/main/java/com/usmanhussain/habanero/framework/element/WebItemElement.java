@@ -14,18 +14,20 @@ public class WebItemElement implements WebItem {
     private final By element;
     private final String name;
     private final TestContext context;
+    private final boolean visibleCheck;
 
-    public WebItemElement(By element, String name, TestContext context) {
+    public WebItemElement(By element, String name, TestContext context, boolean visibleCheck) {
         this.element = element;
         this.name = name;
         this.context = context;
+        this.visibleCheck = visibleCheck;
     }
 
     @Override
     public WebElement getElement() {
         if (element != null) {
             return (new WebDriverWait(context.getDriver(), ELEMENT_FETCH_TIME_OUT_SECS))
-                    .until(ExpectedConditions.presenceOfElementLocated(element));
+                    .until(visibleCheck ? ExpectedConditions.visibilityOfElementLocated(element) : ExpectedConditions.presenceOfElementLocated(element));
         }
 
         return null;
