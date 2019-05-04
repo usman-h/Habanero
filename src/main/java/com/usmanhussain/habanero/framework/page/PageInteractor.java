@@ -5,6 +5,7 @@ import com.usmanhussain.habanero.framework.assertion.AssertAction;
 import com.usmanhussain.habanero.framework.assertion.AssertConstants;
 import com.usmanhussain.habanero.framework.assertion.AssertException;
 import com.usmanhussain.habanero.framework.assertion.AssertOKException;
+import com.usmanhussain.habanero.framework.element.DescriptionType;
 import com.usmanhussain.habanero.framework.element.WebItem;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -93,6 +94,12 @@ public abstract class PageInteractor<T extends PageDefinition> {
     public void waitUntilElementClickable(WebItem item) {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), DEFAULT_CURSOR_TIME_OUT_SECS);
         wait.until(ExpectedConditions.elementToBeClickable(item.getElement()));
+    }
+
+    protected void selectDropDown(WebItem item, DescriptionType descriptionType) throws AssertOKException, AssertException {
+        if (descriptionType != null) {
+            selectDropDown(item, descriptionType.getDescription());
+        }
     }
 
     protected void selectDropDown(WebItem item, String text) throws AssertOKException, AssertException {

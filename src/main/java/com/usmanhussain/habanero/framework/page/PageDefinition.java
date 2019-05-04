@@ -1,6 +1,7 @@
 package com.usmanhussain.habanero.framework.page;
 
 import com.usmanhussain.habanero.context.TestContext;
+import com.usmanhussain.habanero.framework.element.CompositeWebItem;
 import com.usmanhussain.habanero.framework.element.WebItem;
 import com.usmanhussain.habanero.framework.element.WebItemElement;
 import org.openqa.selenium.By;
@@ -36,5 +37,13 @@ public abstract class PageDefinition {
 
     protected WebItem makeVisible(By by) {
         return new WebItemElement(by, null, getContext(), true);
+    }
+
+    protected WebItem makeComposite(By by, String name, WebItem associatedItem) {
+        return new CompositeWebItem(by, name, getContext(), associatedItem, false);
+    }
+
+    protected WebItem makeComposite(By by, WebItem associatedItem) {
+        return new CompositeWebItem(by, null, getContext(), associatedItem, false);
     }
 }

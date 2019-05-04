@@ -38,7 +38,7 @@ public class TestContext {
 
     public void close() {
         if (driver != null) {
-            driver.close();
+            driver.quit();
         }
     }
 
