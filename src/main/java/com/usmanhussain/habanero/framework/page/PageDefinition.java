@@ -35,6 +35,10 @@ public abstract class PageDefinition {
         return new WebItemElement(by, null, getContext(), false);
     }
 
+    protected WebItem make(By by, int timeout) {
+        return new WebItemElement(by, null, getContext(), false, timeout);
+    }
+
     protected WebItem makeVisible(By by) {
         return new WebItemElement(by, null, getContext(), true);
     }
